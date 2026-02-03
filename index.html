@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SizeDemand</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>SizeDemand</h2>
+</div>
+
+<div class="content">
+  <h1>Hi!</h1>
+  <p>The chart below shows the current demand for diamonds.</p>
+
+  <table id="demandTable">
+    <thead>
+      <tr>
+        <th>ROUGH</th>
+        <th>PER CARAT</th>
+        <th>SIZE PER STONE</th>
+        <th>POLISHED</th>
+        <th>DEMAND</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+/* 🔴 PASTE YOUR FIREBASE CONFIG HERE */
+  const firebaseConfig = {
+    apiKey: "AIzaSyDdxvoCfK5DmyU97EJhXNMUIep77F0-BYA",
+    authDomain: "draw-sketch-and-trace-de157.firebaseapp.com",
+    projectId: "draw-sketch-and-trace-de157",
+    storageBucket: "draw-sketch-and-trace-de157.firebasestorage.app",
+    messagingSenderId: "1085782907152",
+    appId: "1:1085782907152:web:f9d877458e7ed210022d95",
+    measurementId: "G-BEP78Y4JQK"
+  };
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const tableBody = document.querySelector("#demandTable tbody");
+const docRef = db.collection("demand").doc("table");
+
+docRef.onSnapshot(doc => {
+  if (!doc.exists) return;
+
+  const data = doc.data();
+  const rows = data.rows || [];
+
+  tableBody.innerHTML = "";
+
+  rows.forEach((row, index) => {
+    tableBody.innerHTML += `
+      <tr>
+        <td>${row["ROUGH"]}</td>
+        <td>${row["PER CARAT (AVG STONE)"]}</td>
+        <td>${row["SIZE PER STONE"]}</td>
+        <td>${row["POLISHED"]}</td>
+        <td>
+          <select onchange="updateDemand(${index}, this.value)">
+            <option ${row["DEMAND"]=="High"?"selected":""}>High</option>
+            <option ${row["DEMAND"]=="Medium"?"selected":""}>Medium</option>
+            <option ${row["DEMAND"]=="Slow"?"selected":""}>Slow</option>
+            <option ${row["DEMAND"]=="No"?"selected":""}>No</option>
+            <option ${row["DEMAND"]=="Unknown"?"selected":""}>Unknown</option>
+          </select>
+        </td>
+      </tr>
+    `;
+  });
+});
+
+
+function updateDemand(index, value) {
+  docRef.get().then(doc => {
+    const rows = doc.data().rows;
+    rows[index]["DEMAND"] = value;
+
+    docRef.update({ rows });
+  });
+}
+</script>
+
+</body>
+</html>

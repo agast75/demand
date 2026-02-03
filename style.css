@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.sidebar {
+  width: 230px;
+  min-height: 100vh;
+  background: linear-gradient(#0b1d4d, #4b2a7a);
+  color: white;
+  padding: 25px;
+}
+
+.content {
+  padding: 30px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+select {
+  padding: 6px;
+}
