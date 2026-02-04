@@ -37,3 +37,24 @@ td {
 select {
   padding: 6px;
 }
+/* Demand based row colors */
+.demand-high {
+  background-color: #d4edda; /* green */
+}
+
+.demand-medium {
+  background-color: #fff3cd; /* yellow */
+}
+
+.demand-slow {
+  background-color: #ffe5b4; /* orange */
+}
+
+.demand-no {
+  background-color: #f8d7da; /* red */
+}
+
+.demand-unknown {
+  background-color: #e2e3e5; /* grey */
+}
+
