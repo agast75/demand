@@ -39,22 +39,23 @@ select {
 }
 /* Demand based row colors */
 .demand-high {
-  background-color: #d4edda; /* green */
+  background-color: #d4edda;
 }
 
 .demand-medium {
-  background-color: #fff3cd; /* yellow */
+  background-color: #fff3cd;
 }
 
 .demand-slow {
-  background-color: #ffe5b4; /* orange */
+  background-color: #ffe5b4;
 }
 
 .demand-no {
-  background-color: #f8d7da; /* red */
+  background-color: #f8d7da;
 }
 
 .demand-unknown {
-  background-color: #e2e3e5; /* grey */
+  background-color: #e2e3e5;
 }
+
 
