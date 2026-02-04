@@ -61,7 +61,7 @@ docRef.onSnapshot(doc => {
 
   rows.forEach((row, index) => {
     tableBody.innerHTML += `
-      <tr>
+      <tr class="${getDemandClass(row["DEMAND"])}">
         <td>${row["ROUGH"]}</td>
         <td>${row["PER CARAT (AVG STONE)"]}</td>
         <td>${row["SIZE PER STONE"]}</td>
@@ -80,7 +80,23 @@ docRef.onSnapshot(doc => {
   });
 });
 
+function getDemandClass(demand) {
+  if (!demand) return "demand-unknown";
 
+  switch (demand.toLowerCase()) {
+    case "high":
+      return "demand-high";
+    case "medium":
+      return "demand-medium";
+    case "slow":
+      return "demand-slow";
+    case "no":
+      return "demand-no";
+    default:
+      return "demand-unknown";
+  }
+}
+  
 function updateDemand(index, value) {
   docRef.get().then(doc => {
     const rows = doc.data().rows;
@@ -93,5 +109,6 @@ function updateDemand(index, value) {
 
 </body>
 </html>
+
 
 
