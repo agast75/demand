@@ -13,8 +13,17 @@ body {
 }
 
 .content {
-  padding: 30px;
   width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+}
+.main {
+  width: 100%;
+  max-width: 1200px;   /* 👈 table center + limited width */
+}
+h1 {
+  margin-top: 0;
 }
 
 
@@ -23,6 +32,8 @@ table {
   border-collapse: collapse;
   margin-top: 25px;
   font-size: 15px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 
@@ -83,6 +94,7 @@ tr:hover {
   transform: scale(1.003);
   transition: all 0.15s ease-in-out;
 }
+
 
 
 
